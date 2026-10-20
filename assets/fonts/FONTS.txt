@@ -1,0 +1,10 @@
+Bundled fonts (self-hosted, no Google requests) — all licensed under the SIL Open Font License 1.1
+https://openfontlicense.org
+
+Space Grotesk 500, 700  (sg-*.woff2)      © The Space Grotesk Project Authors — display / headings, prices
+Inter 400, 500, 600     (inter-*.woff2)   © The Inter Project Authors            — body text, UI
+Hind Siliguri 400-700   (hs-*.woff2)      © Indian Type Foundry                  — Bengali (বাংলা) fallback
+
+Files are WOFF2 subsets: Latin (ASCII, Latin-1, Latin Extended-A, punctuation, currency, a few arrows)
+for Space Grotesk / Inter, and Bengali block + basic Latin for Hind Siliguri.
+Hind Siliguri is only downloaded by the browser when the page actually contains Bengali characters (unicode-range).
