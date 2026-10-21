@@ -8,6 +8,21 @@ return array(
 	'zone'     => 'header',
 	'defaults' => array(),
 	'schema'   => array(
+		array( 'key' => 'topbar', 'type' => 'toggle', 'label' => __( 'Show company top bar (links to the main website)', 'accessiq-demo' ) ),
+		array( 'key' => 'topbar_text', 'type' => 'text', 'label' => __( 'Top bar text', 'accessiq-demo' ) ),
+		array( 'key' => 'topbar_button', 'type' => 'text', 'label' => __( 'Dropdown button label', 'accessiq-demo' ) ),
+		array(
+			'key'        => 'topbar_links',
+			'type'       => 'repeater',
+			'label'      => __( 'Top bar links', 'accessiq-demo' ),
+			'item_label' => 'label',
+			'fields'     => array(
+				array( 'key' => 'icon', 'type' => 'icon', 'label' => __( 'Icon', 'accessiq-demo' ) ),
+				array( 'key' => 'label', 'type' => 'text', 'label' => __( 'Label', 'accessiq-demo' ) ),
+				array( 'key' => 'desc', 'type' => 'text', 'label' => __( 'Short description', 'accessiq-demo' ) ),
+				array( 'key' => 'link', 'type' => 'link', 'label' => __( 'Link', 'accessiq-demo' ) ),
+			),
+		),
 		array( 'key' => 'logo_text', 'type' => 'text', 'label' => __( 'Logo text', 'accessiq-demo' ) ),
 		array( 'key' => 'logo_image', 'type' => 'image', 'label' => __( 'Logo image (optional, replaces icon)', 'accessiq-demo' ) ),
 		array( 'key' => 'logo_link', 'type' => 'link', 'label' => __( 'Logo link', 'accessiq-demo' ) ),

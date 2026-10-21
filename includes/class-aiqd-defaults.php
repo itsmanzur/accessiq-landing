@@ -54,6 +54,10 @@ class AIQD_Defaults {
 			'privacy'       => array( 'label' => 'Privacy policy', 'url' => '/privacy-policy/', 'new' => 0 ),
 			'terms'         => array( 'label' => 'Terms of service', 'url' => '/terms/', 'new' => 0 ),
 			'refund'        => array( 'label' => 'Refund policy', 'url' => '/refund-policy/', 'new' => 0 ),
+			'company_home'   => array( 'label' => 'Company site — Home (thereadscope.com)', 'url' => 'https://thereadscope.com/', 'new' => 1 ),
+			'company_products' => array( 'label' => 'Company site — Products', 'url' => 'https://thereadscope.com/products/', 'new' => 1 ),
+			'company_blog'   => array( 'label' => 'Company site — Blog', 'url' => 'https://thereadscope.com/blog/', 'new' => 1 ),
+			'company_contact' => array( 'label' => 'Company site — Contact', 'url' => 'https://thereadscope.com/contact/', 'new' => 1 ),
 			'author'        => array( 'label' => 'Author (readscope)', 'url' => 'https://profiles.wordpress.org/readscope', 'new' => 1 ),
 		);
 	}
@@ -205,6 +209,15 @@ class AIQD_Defaults {
 	 */
 	public static function header() {
 		return array(
+			'topbar'     => 1,
+			'topbar_text' => 'A product by readscope',
+			'topbar_button' => 'More from readscope',
+			'topbar_links' => array(
+				array( 'label' => 'Home', 'icon' => 'globe', 'desc' => 'About readscope and what we build', 'link' => '@company_home' ),
+				array( 'label' => 'Products', 'icon' => 'grid', 'desc' => 'Plugins and themes by readscope', 'link' => '@company_products' ),
+				array( 'label' => 'Blog', 'icon' => 'book', 'desc' => 'Guides, news and release notes', 'link' => '@company_blog' ),
+				array( 'label' => 'Contact', 'icon' => 'mail', 'desc' => 'Questions? Talk to the team', 'link' => '@company_contact' ),
+			),
 			'sticky'     => 1,
 			'transparent_top' => 1,
 			'logo_text'  => 'AccessIQ',

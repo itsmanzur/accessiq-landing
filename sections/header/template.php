@@ -7,6 +7,31 @@ defined( 'ABSPATH' ) || exit;
 $settings = AIQD_Store::settings();
 $cls      = 'aiqd-header' . ( ! empty( $d['sticky'] ) ? ' is-sticky' : '' ) . ( ! empty( $d['transparent_top'] ) ? ' is-transparent' : '' );
 ?>
+<?php if ( ! empty( $d['topbar'] ) && ( ! empty( $d['topbar_text'] ) || ! empty( $d['topbar_links'] ) ) ) : ?>
+	<div class="aiqd-topbar">
+		<div class="aiqd-container aiqd-topbar__in">
+			<span class="aiqd-topbar__txt"><?php echo esc_html( $d['topbar_text'] ); ?></span>
+			<div class="aiqd-topbar__menu">
+				<button type="button" class="aiqd-topbar__btn" aria-expanded="false" aria-controls="aiqd-company-menu">
+					<?php aiqd_e_icon( 'grid', 16 ); ?><span><?php echo esc_html( $d['topbar_button'] ); ?></span><?php aiqd_e_icon( 'chevron-down', 14, 'aiqd-topbar__chev' ); ?>
+				</button>
+				<div class="aiqd-topbar__panel" id="aiqd-company-menu" hidden>
+					<ul>
+						<?php foreach ( (array) $d['topbar_links'] as $tl ) : ?>
+							<li>
+								<a <?php echo aiqd_href_attrs( $tl['link'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?>>
+									<span class="aiqd-topbar__ico"><?php aiqd_e_icon( ! empty( $tl['icon'] ) ? $tl['icon'] : 'link', 18 ); ?></span>
+									<span class="aiqd-topbar__lbl"><strong><?php echo esc_html( $tl['label'] ); ?></strong><?php if ( ! empty( $tl['desc'] ) ) : ?><small><?php echo esc_html( $tl['desc'] ); ?></small><?php endif; ?></span>
+									<?php aiqd_e_icon( 'external', 14, 'aiqd-topbar__ext' ); ?>
+								</a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>
 <header class="<?php echo esc_attr( $cls ); ?>" id="aiqd-header">
 	<div class="aiqd-container aiqd-header__bar">
 		<a class="aiqd-logo" <?php echo aiqd_href_attrs( $d['logo_link'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?> aria-label="<?php echo esc_attr( $d['logo_text'] ); ?>">

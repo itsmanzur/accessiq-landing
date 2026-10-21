@@ -347,3 +347,27 @@ html{scroll-behavior:smooth}
 
 /* display font (Space Grotesk) for logo text, prices, big numbers */
 .aiqd-logo__text,.aiqd-plan__amt,.aiqd-plan__cur,.aiqd-stat__num,.aiqd-ring__num b,.aiqd-kpi b,.aiqd-calc__old,.aiqd-calc__new,.aiqd-calc__save b,.aiqd-grade,.aiqd-chip b,.aiqd-step__num,.aiqd-plan__name,.aiqd-v-score{font-family:var(--aiqd-font-display,inherit)}
+
+/* ───── company top bar + dropdown ───── */
+.aiqd-topbar{position:relative;z-index:61;background:var(--bg2);border-bottom:1px solid var(--line);font-size:.8rem}
+.aiqd-topbar__in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:38px}
+.aiqd-topbar__txt{color:var(--muted);font-weight:500}
+.aiqd-topbar__menu{position:relative}
+.aiqd-topbar__btn{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;font-size:.8rem;transition:border-color .2s,background .2s}
+.aiqd-topbar__btn:hover,.aiqd-topbar__btn[aria-expanded="true"]{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 10%,var(--card))}
+.aiqd-topbar__btn .aiqd-i:first-child{color:var(--primary-ink)}
+.aiqd-topbar__chev{transition:transform .25s}
+.aiqd-topbar__btn[aria-expanded="true"] .aiqd-topbar__chev{transform:rotate(180deg)}
+.aiqd-topbar__panel{position:absolute;right:0;top:calc(100% + 10px);width:min(340px,calc(100vw - 32px));padding:8px;border-radius:18px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--shadow);transform-origin:100% 0;animation:aiqd-pop-menu .22s cubic-bezier(.2,.8,.2,1)}
+.aiqd-topbar__panel[hidden]{display:none}
+.aiqd-topbar__panel ul{display:grid;gap:2px}
+.aiqd-topbar__panel a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;text-decoration:none;color:var(--ink);transition:background .15s}
+.aiqd-topbar__panel a:hover,.aiqd-topbar__panel a:focus-visible{background:var(--card2)}
+.aiqd-topbar__ico{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--primary) 14%,transparent);color:var(--primary-ink)}
+.aiqd-topbar__lbl{flex:1;min-width:0;display:grid;line-height:1.3}
+.aiqd-topbar__lbl strong{font-size:.92rem}
+.aiqd-topbar__lbl small{color:var(--muted);font-size:.76rem}
+.aiqd-topbar__ext{color:var(--muted);opacity:0;transition:opacity .15s,transform .15s}
+.aiqd-topbar__panel a:hover .aiqd-topbar__ext{opacity:1;transform:translate(2px,-2px)}
+@keyframes aiqd-pop-menu{from{opacity:0;transform:translateY(-6px) scale(.97)}to{opacity:1;transform:none}}
+@media (max-width:520px){.aiqd-topbar__txt{display:none}.aiqd-topbar__in{justify-content:flex-end}}

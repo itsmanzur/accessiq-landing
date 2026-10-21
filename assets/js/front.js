@@ -171,6 +171,27 @@
 			D.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { set(false); burger.focus(); } });
 		}
 
+		// Company dropdown in the top bar.
+		var cbtn = $('.aiqd-topbar__btn', root);
+		var cpanel = $('.aiqd-topbar__panel', root);
+		if (cbtn && cpanel) {
+			var cset = function (open, focusBtn) {
+				cbtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+				cpanel.hidden = !open;
+				if (open) { var first = $('a', cpanel); if (first && focusBtn === 'key') { first.focus(); } }
+				else if (focusBtn === true) { cbtn.focus(); }
+			};
+			cbtn.addEventListener('click', function () { cset(cbtn.getAttribute('aria-expanded') !== 'true'); });
+			cbtn.addEventListener('keydown', function (e) { if (e.key === 'ArrowDown') { e.preventDefault(); cset(true, 'key'); } });
+			cpanel.addEventListener('keydown', function (e) {
+				var links = $('a', cpanel); var i = links.indexOf(D.activeElement);
+				if (e.key === 'ArrowDown') { e.preventDefault(); links[(i + 1) % links.length].focus(); }
+				if (e.key === 'ArrowUp') { e.preventDefault(); links[(i - 1 + links.length) % links.length].focus(); }
+			});
+			D.addEventListener('click', function (e) { if (!cpanel.hidden && !e.target.closest('.aiqd-topbar__menu')) { cset(false); } });
+			D.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !cpanel.hidden) { cset(false, true); } });
+		}
+
 		var tg = $('.aiqd-theme-toggle', root);
 		if (tg) {
 			tg.addEventListener('click', function () {
