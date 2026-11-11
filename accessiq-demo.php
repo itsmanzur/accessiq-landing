@@ -21,6 +21,7 @@ define( 'AIQD_FILE', __FILE__ );
 define( 'AIQD_DIR', plugin_dir_path( __FILE__ ) );
 define( 'AIQD_URL', plugin_dir_url( __FILE__ ) );
 
+require_once AIQD_DIR . 'assets/readscope-nav/readscope-nav.php';
 require_once AIQD_DIR . 'includes/helpers.php';
 require_once AIQD_DIR . 'includes/legal.php';
 require_once AIQD_DIR . 'includes/class-aiqd-defaults.php';

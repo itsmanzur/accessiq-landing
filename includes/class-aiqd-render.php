@@ -82,6 +82,8 @@ class AIQD_Render {
 		wp_enqueue_style( 'aiqd-front', AIQD_URL . 'assets/css/front.css', array( 'aiqd-fonts' ), AIQD_VERSION );
 		wp_enqueue_style( 'aiqd-sections', AIQD_URL . 'assets/css/sections.css', array( 'aiqd-front' ), AIQD_VERSION );
 		wp_enqueue_style( 'aiqd-visuals', AIQD_URL . 'assets/css/visuals.css', array( 'aiqd-sections' ), AIQD_VERSION );
+		wp_enqueue_style( 'rsnav', AIQD_URL . 'assets/readscope-nav/readscope-nav.css', array( 'aiqd-visuals' ), AIQD_VERSION );
+		wp_enqueue_script( 'rsnav', AIQD_URL . 'assets/readscope-nav/readscope-nav.js', array(), AIQD_VERSION, true );
 		wp_add_inline_style( 'aiqd-visuals', $this->design_css() );
 		$checkout = $this->checkout_config();
 		$deps     = array();
