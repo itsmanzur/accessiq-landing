@@ -1,0 +1,65 @@
+/* Readscope page guide. Shared by the product demo sites. Source: nav/guide/guide.css, built by build.js, do not edit copies.
+ * Theme it with these variables on the element the guide is mounted in (or any ancestor):
+ *   --rsg-accent  active colour          --rsg-bg    pill / panel surface
+ *   --rsg-fg      text on the surface    --rsg-mut   muted text and idle dots
+ *   --rsg-line    borders                --rsg-ink / --rsg-on-ink  tooltip colours
+ */
+.rsg{--a:var(--rsg-accent,#4B2FE0);--bg:var(--rsg-bg,rgba(255,255,255,.92));--fg:var(--rsg-fg,#14102E);--mut:var(--rsg-mut,#6B6896);--ln:var(--rsg-line,rgba(20,16,46,.14));--ink:var(--rsg-ink,#14102E);--oi:var(--rsg-on-ink,#fff);--sh:var(--rsg-shadow,0 8px 30px rgba(20,16,46,.16));font:500 13px/1.3 var(--rsg-font,inherit);color:var(--fg)}
+.rsg *{box-sizing:border-box}
+.rsg__sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* reading progress */
+.rsg__bar{position:fixed;left:0;right:0;top:0;height:3px;z-index:var(--rsg-z,85);pointer-events:none}
+.rsg__bar span{display:block;height:100%;background:var(--a);transform:scaleX(0);transform-origin:0 50%}
+
+/* rail */
+.rsg__rail{position:fixed;right:14px;top:50%;z-index:var(--rsg-z,85);transform:translateY(-50%) translateX(8px);display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 6px 12px;border-radius:999px;background:var(--bg);border:1px solid var(--ln);box-shadow:var(--sh);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+.rsg.is-on .rsg__rail{opacity:1;pointer-events:auto;transform:translateY(-50%)}
+.rsg__btn{display:grid;justify-items:center;gap:3px;width:40px;padding:7px 0 6px;border:0;border-radius:999px;background:color-mix(in srgb,var(--a) 12%,transparent);color:var(--a);font:inherit;cursor:pointer}
+.rsg__btn:hover,.rsg__btn[aria-expanded="true"]{background:var(--a);color:var(--rsg-on-accent,#fff)}
+.rsg__cnt{font-size:10px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.rsg__cnt b{font-weight:800}
+.rsg__dots{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:clamp(2px,calc((100vh - 260px)/var(--rsg-n,20) - 10px),9px)}
+.rsg__dots li{margin:0;padding:0;line-height:0}
+.rsg__dots a{position:relative;display:block;width:10px;height:10px;border-radius:999px;background:var(--mut);opacity:.4;transition:all .25s}
+.rsg__dots a::after{content:"";position:absolute;inset:-4px -8px}
+.rsg__dots a:hover,.rsg__dots a:focus-visible{opacity:1;background:var(--a)}
+.rsg__dots a.is-on{opacity:1;background:var(--a);height:24px}
+.rsg__tip{position:absolute;right:24px;top:50%;transform:translate(6px,-50%);padding:5px 10px;border-radius:8px;background:var(--ink);color:var(--oi);font-size:12.5px;font-weight:600;line-height:1.2;white-space:nowrap;opacity:0;pointer-events:none;transition:all .18s}
+.rsg__dots a:hover .rsg__tip,.rsg__dots a:focus-visible .rsg__tip{opacity:1;transform:translate(0,-50%)}
+.rsg__dots a.is-on .rsg__tip{display:none}
+
+/* name of the current section, beside its dot (wide screens only, so it never covers content) */
+.rsg__now{position:absolute;right:calc(100% + 10px);top:0;transform:translateY(-50%);padding:5px 11px;border-radius:999px;background:var(--a);color:var(--rsg-on-accent,#fff);font-size:12.5px;font-weight:700;line-height:1.2;white-space:nowrap;max-width:220px;overflow:hidden;text-overflow:ellipsis;display:none;transition:top .25s}
+@media (min-width:1500px){.rsg__now{display:block}}
+
+/* all-sections panel */
+.rsg__panel{position:fixed;right:76px;top:50%;transform:translateY(-50%);z-index:calc(var(--rsg-z,85) + 1);width:min(320px,calc(100vw - 32px));max-height:min(78vh,640px);display:flex;flex-direction:column;border-radius:18px;background:var(--rsg-panel,var(--bg));border:1px solid var(--ln);box-shadow:var(--sh);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);overflow:hidden}
+.rsg__panel[hidden]{display:none}
+.rsg__head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;border-bottom:1px solid var(--ln);font-size:14px}
+.rsg__x{width:30px;height:30px;border:0;border-radius:999px;background:transparent;color:var(--mut);font-size:22px;line-height:1;cursor:pointer}
+.rsg__x:hover{background:color-mix(in srgb,var(--mut) 16%,transparent);color:var(--fg)}
+.rsg__list{list-style:none;margin:0;padding:6px;overflow:auto;overscroll-behavior:contain}
+.rsg__list li{margin:0;padding:0}
+.rsg__list a{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:11px;color:var(--fg);text-decoration:none;font-size:14px;font-weight:600}
+.rsg__list a i{flex:none;display:grid;place-items:center;min-width:26px;height:22px;padding:0 5px;border-radius:7px;background:color-mix(in srgb,var(--mut) 14%,transparent);color:var(--mut);font:700 11px/1 var(--rsg-font,inherit);font-style:normal;font-variant-numeric:tabular-nums}
+.rsg__list a:hover,.rsg__list a:focus-visible{background:color-mix(in srgb,var(--a) 10%,transparent)}
+.rsg__list a.is-on{background:color-mix(in srgb,var(--a) 14%,transparent);color:var(--a)}
+.rsg__list a.is-on i{background:var(--a);color:var(--rsg-on-accent,#fff)}
+.rsg a:focus-visible,.rsg button:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+
+/* tablets and phones: no dot rail, just a "Sections" pill bottom left that opens a bottom sheet */
+@media (max-width:1100px){
+	.rsg__rail{left:14px;right:auto;top:auto;bottom:calc(86px + env(safe-area-inset-bottom,0px));transform:translateY(8px);flex-direction:row;padding:0;gap:0;border-radius:999px}
+	.rsg.is-on .rsg__rail{transform:none}
+	.rsg__dots,.rsg__now{display:none}
+	.rsg__btn{display:flex;align-items:center;gap:8px;width:auto;padding:10px 14px;background:transparent;color:var(--fg);font-size:13px;font-weight:700}
+	.rsg__btn:hover,.rsg__btn[aria-expanded="true"]{background:var(--a);color:var(--rsg-on-accent,#fff)}
+	.rsg__btn .rsg__sr{position:static;width:auto;height:auto;clip:auto;order:-1;font-size:13px}
+	.rsg__btn svg{color:var(--a)}
+	.rsg__btn:hover svg,.rsg__btn[aria-expanded="true"] svg{color:inherit}
+	.rsg__cnt{font-size:12px;color:var(--mut)}
+	.rsg__panel{left:0;right:0;top:auto;bottom:0;width:auto;max-height:70vh;transform:none;border-radius:20px 20px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
+}
+@media (prefers-reduced-motion:reduce){.rsg *{transition:none!important}}
+@media print{.rsg{display:none}}

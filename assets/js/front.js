@@ -205,6 +205,9 @@
 		var secs = $$('section[data-nav][id]', root);
 		var dots = $('.aiqd-dots', root);
 		var links = $$('.aiqd-nav a, .aiqd-mobile-nav a', root);
+		if ($('[data-aiqd-guide]', root) && W.RSGuide) {
+			W.RSGuide.init({ sections: secs, mount: root, progress: false, label: function (s) { return s.getAttribute('data-nav'); } });
+		}
 		if (dots) {
 			secs.forEach(function (s) {
 				var a = D.createElement('a');

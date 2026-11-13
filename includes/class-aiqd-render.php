@@ -84,9 +84,11 @@ class AIQD_Render {
 		wp_enqueue_style( 'aiqd-visuals', AIQD_URL . 'assets/css/visuals.css', array( 'aiqd-sections' ), AIQD_VERSION );
 		wp_enqueue_style( 'rsnav', AIQD_URL . 'assets/readscope-nav/readscope-nav.css', array( 'aiqd-visuals' ), AIQD_VERSION );
 		wp_enqueue_script( 'rsnav', AIQD_URL . 'assets/readscope-nav/readscope-nav.js', array(), AIQD_VERSION, true );
+		wp_enqueue_style( 'rsguide', AIQD_URL . 'assets/readscope-nav/readscope-guide.css', array( 'aiqd-visuals' ), AIQD_VERSION );
+		wp_enqueue_script( 'rsguide', AIQD_URL . 'assets/readscope-nav/readscope-guide.js', array(), AIQD_VERSION, true );
 		wp_add_inline_style( 'aiqd-visuals', $this->design_css() );
 		$checkout = $this->checkout_config();
-		$deps     = array();
+		$deps     = array( 'rsguide' );
 		if ( $checkout['ready'] ) {
 			// Freemius overlay checkout. Without a real public key the buttons stay plain links.
 			wp_enqueue_script( 'freemius-checkout', 'https://checkout.freemius.com/js/v1/', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
@@ -297,7 +299,7 @@ class AIQD_Render {
 			echo '<div class="aiqd-progress" aria-hidden="true"><span></span></div>';
 		}
 		if ( $s['show_dots_nav'] ) {
-			echo '<nav class="aiqd-dots" aria-label="' . esc_attr__( 'Page sections', 'accessiq-demo' ) . '"></nav>';
+			echo '<span data-aiqd-guide hidden></span>'; // Marker: the shared page guide (section rail and menu) is built from it.
 		}
 		echo '<div class="aiqd-fab-stack">';
 		if ( $s['show_float_cta'] && $s['float_cta_label'] ) {
